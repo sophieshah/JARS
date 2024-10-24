@@ -12,20 +12,42 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+/*HEX Codes (darkest to lightest):
+394F49, A9BB77, A5B5BF, BFFFBC, F4FDAF*/
+
+.App-button {
+  background-color: #F4FDAF;
+  border: none;
+  color: #394F49;
+  padding: 15px 30px;
+  font-size: 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.App-button:hover {
+  background-color: #A5B5BF;
+  color: #394F49;
+}
 
 .App-header {
-  background-color: #282c34;
+  background-color: #394F49;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(15px + 2vmin);
+  color: #A9BB77;
+}
+
+.App-title {
+  color: #BFFFBC;
 }
 
 .App-link {
-  color: #61dafb;
+  color: #BFFFBC;
 }
 
 @keyframes App-logo-spin {
