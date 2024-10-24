@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import LogIn from './LogIn.js';
 import Dashboard from './Dashboard.js'
+import CreateAcct from './CreateAcct.js'
 
 function App() {
   // const handleClick = () => {
@@ -29,6 +30,7 @@ function App() {
         } />
           <Route path="/login" element={<LogIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/createAcct" element={<CreateAcct />} />
         </Routes>
       </div>
     </Router>

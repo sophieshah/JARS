@@ -2,11 +2,11 @@ import React from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
 
-function LogIn() {
+function CreateAcct() {
   return (
-    <div className="Login">
-            <header className="App-header">
-            <h1>Log In</h1>
+    <div className="CreateAcct">
+        <header className="App-header">
+        <h1>Create Account</h1>
             <form>
               <label>
                 Username:
@@ -21,14 +21,10 @@ function LogIn() {
             <Link to="/dashboard">
               <button className="App-button">Submit</button>
             </Link>
-            <p>New to JARS? Create your account below:</p>
-            <Link to="/createAcct">
-              <button className="App-button">Create Account</button>
-            </Link>
             </form>
-          </header>
-      </div>      
+        </header>
+    </div>
   );
 }
 
-export default LogIn;
+export default CreateAcct;
