@@ -9,12 +9,6 @@ function Dashboard() {
         <h1>
             Welcome to the dashboard.
         </h1>
-        <Link to="/inputFood">
-          <button className="App-button">Input Food</button>
-        </Link>
-        <Link to="/inputWater">
-          <button className="App-button">Input Water</button>
-        </Link>
         </header>
     </div>
   );
