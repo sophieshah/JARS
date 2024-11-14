@@ -6,7 +6,7 @@ function InputWater() {
   return (
     <div className="inputWater">
             <header className="App-header">
-            <h1>Input Food</h1>
+            <h1>Input Water</h1>
             <form>
               <label>
                 Date:
