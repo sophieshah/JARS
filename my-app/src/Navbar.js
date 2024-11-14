@@ -15,6 +15,7 @@ const Navbar = () => {
             <ul className="navbar-links">
                 <li><Link to="/inputFood">Input Food</Link></li>
                 <li><Link to="/inputWater">Input Water</Link></li>
+                <li><Link to="/editUser">Edit User</Link></li>
             </ul>
         </nav>
     );
