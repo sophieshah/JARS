@@ -8,11 +8,11 @@ function InputWater() {
   const [ounces, setOunces] = useState('');
 
   const handleSubmit = (e) => {
-    const waterInfo = JSON.parse(localStorage.getItem('waterInfo')) || [];
+    const waterInfo = JSON.parse(sessionStorage.getItem('waterInfo')) || [];
 
     if (date && time && ounces) {
       waterInfo.push({ date, time, ounces });
-      localStorage.setItem('waterInfo', JSON.stringify(waterInfo));
+      sessionStorage.setItem('waterInfo', JSON.stringify(waterInfo));
     } else {
       alert('Please fill out all fields.');
     }

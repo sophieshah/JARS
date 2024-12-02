@@ -9,11 +9,11 @@ function InputFood() {
   const [description, setDescription] = useState('');
 
   const handleSubmit = (e) => {
-    const foodInfo = JSON.parse(localStorage.getItem('foodInfo')) || [];
+    const foodInfo = JSON.parse(sessionStorage.getItem('foodInfo')) || [];
 
     if (date && time && calories && description) {
       foodInfo.push({ date, time, calories, description });
-      localStorage.setItem('foodInfo', JSON.stringify(foodInfo));
+      sessionStorage.setItem('foodInfo', JSON.stringify(foodInfo));
     } else {
       alert('Please fill out all fields.');
     }
