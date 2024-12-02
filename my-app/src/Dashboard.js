@@ -281,6 +281,60 @@ function Dashboard() {
     },
   };
 
+
+
+const [goals, setGoals] = useState([]);
+
+useEffect(() => {
+  // Fetch goals from localStorage
+  const storedData = JSON.parse(localStorage.getItem('userData')) || {};
+  setGoals(storedData.goals || []);
+}, []);
+
+const formatGoal = (goal) => {
+  switch (goal) {
+    case 'lose_weight':
+      return 'Lose Weight';
+    case 'gain_muscle':
+      return 'Gain Muscle';
+    case 'maintain_health':
+      return 'Maintain Health';
+    default:
+      return 'No Goal Set';
+  }
+};
+
+const formatTimeframe = (timeframe) => {
+  switch (timeframe) {
+    case '1_week':
+      return '1 Week';
+    case '2_weeks':
+      return '2 Weeks';
+    case '3_weeks':
+      return '3 Weeks';
+    case '1_month':
+      return '1 Month';
+    default:
+      return 'No Timeframe Set';
+  }
+};
+
+
+const getRecommendation = (goal) => {
+  switch (goal) {
+    case 'lose_weight':
+      return 'Maintain a calorie deficit and engage in cardio exercises.';
+    case 'gain_muscle':
+      return 'Follow a high-protein diet and perform strength training.';
+    case 'maintain_health':
+      return 'Stick to a balanced diet and regular physical activity.';
+    default:
+      return 'Set a goal to receive recommendations.';
+  }
+};
+
+
+
   return (
     <div className="Dashboard">
       <header className="App-header">
@@ -316,27 +370,21 @@ function Dashboard() {
         <br/>
         <br/>
         <h2>Goals and Recommendations</h2>
-        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <div style={{ width: '33%', textAlign: 'center' }}>
-            <h3>Goal 1:</h3>
-            <p>Lose weight</p>
-            <h4>Recommendation:</h4>
-            <p>Lose weight</p>
-          </div>
-          <div style={{ width: '33%', textAlign: 'center' }}>
-            <h3>Goal 2:</h3>
-            <p>Exercise daily</p>
-            <h4>Recommendation:</h4>
-            <p>Lose weight</p>
-          </div>
-          <div style={{ width: '33%', textAlign: 'center' }}>
-            <h3>Goal 3:</h3>
-            <p>Drink 8 cups of water</p>
-            <h4>Recommendation:</h4>
-            <p>Lose weight</p>
-          </div>
-        </div>
-        <br/>
+<div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+  {goals.map((goalObj, index) => (
+    <div
+      key={index}
+      style={{ width: '33%', textAlign: 'center', margin: '0 10px' }}
+    >
+      <h3>Goal {index + 1}:</h3>
+      <p>{`${formatGoal(goalObj.goal)} in ${formatTimeframe(goalObj.timeframe)}`} </p>
+      <h4>Recommendation:</h4>
+      <p>{getRecommendation(goalObj.goal)}</p>
+    </div>
+  ))}
+</div>
+<br />
+
       </header>
     </div>
   );
