@@ -151,8 +151,9 @@ function Dashboard() {
 
   // Fetch goals from MongoDB
   useEffect(() => {
+    const username = localStorage.getItem('username');
     axios
-      .get('http://localhost:5050/users/goals')
+      .get('http://localhost:5050/users/goals', {params: {username}})
       .then((response) => {
         setGoals(response.data || []);
       })

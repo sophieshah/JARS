@@ -81,10 +81,18 @@ router.post('/edit', async (req, res) => {
 // Get user data (goals)
 router.get('/goals', async (req, res) => {
   try {
+    const{username} = req.query;
+    if (!username) {
+      return res.status(400).json({ message: 'Username is required' });
+    }
     const collection = await db.collection('users');
-    const user = await collection.findOne({}); // Retrieve user (you might need a more specific query)
+    const user = await collection.findOne({username}); // Retrieve user (you might need a more specific query)
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
     res.status(200).json(user ? user.goals : []);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: 'Failed to fetch user goals', error: err });
   }
 });

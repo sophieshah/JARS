@@ -31,9 +31,9 @@ function EditUser() {
  // Save user data to the backend
  const handleSave = async (e) => {
   e.preventDefault();
-
+  const user = localStorage.getItem('username');
   const userData = {
-    username: 'testuser', // Replace with the actual user identifier
+    username: user, // Replace with the actual user identifier
     height,
     weight,
     goals,

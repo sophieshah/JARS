@@ -9,11 +9,13 @@ function InputFood() {
   const [calories, setCalories] = useState('');
   const [description, setDescription] = useState('');
 
+  const username = localStorage.getItem('username');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (date && time && calories && description) {
-      const foodInfo = { date, time, calories, description };
+    if (date && time && calories && description && username) {
+      const foodInfo = { date, time, calories, description, username };
 
       try {
         const response = await axios.post('http://localhost:5050/food/add', foodInfo);

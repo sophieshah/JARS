@@ -7,7 +7,7 @@ import water from './routes/water.js';
 
 
 
-const PORT = process.env.PORT || 5050;
+const PORT = 5050;
 const app = express();
 
 app.use(cors());
