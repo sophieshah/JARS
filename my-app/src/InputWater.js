@@ -7,14 +7,17 @@ function InputWater() {
   const [time, setTime] = useState('');
   const [ounces, setOunces] = useState('');
 
+  const username = localStorage.getItem('username');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (date && time && ounces) {
-      const waterInfo = { date, time, ounces };
+    if (date && time && ounces && username) {
+      const waterInfo = { date, time, ounces, username };
 
       try {
         const response = await axios.post('http://localhost:5050/water/add', waterInfo);
+        console.log('Water entry added:', response.data);
         if (response.status === 201) {
           alert('Water entry saved successfully!');
           setDate('');
