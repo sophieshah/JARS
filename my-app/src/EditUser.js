@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
 function EditUser() {
@@ -27,18 +28,27 @@ function EditUser() {
     setGoals(newGoals);
   };
 
-  // Save user data to localStorage
-  const handleSave = (e) => {
-
-    const userData = {
-      height,
-      weight,
-      goals,
-    };
-
-    localStorage.setItem('userData', JSON.stringify(userData));
-    alert('User data saved successfully!');
+ // Save user data to the backend
+ const handleSave = async (e) => {
+  e.preventDefault();
+  const user = localStorage.getItem('username');
+  const userData = {
+    username: user, // Replace with the actual user identifier
+    height,
+    weight,
+    goals,
   };
+
+  try {
+    const response = await axios.post('http://localhost:5050/users/edit', userData);
+    if (response.status === 200) {
+      alert('User data saved successfully!');
+    }
+  } catch (error) {
+    console.error('Failed to save user data:', error);
+    alert('Failed to save user data. Please try again.');
+  }
+};
 
   return (
     <div className="editUser">

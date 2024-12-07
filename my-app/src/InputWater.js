@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 import './App.css';
+import axios from 'axios'
 
 function InputWater() {
-
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [ounces, setOunces] = useState('');
 
-  const handleSubmit = (e) => {
-    const waterInfo = JSON.parse(sessionStorage.getItem('waterInfo')) || [];
+  const username = localStorage.getItem('username');
 
-    if (date && time && ounces) {
-      waterInfo.push({ date, time, ounces });
-      sessionStorage.setItem('waterInfo', JSON.stringify(waterInfo));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (date && time && ounces && username) {
+      const waterInfo = { date, time, ounces, username };
+
+      try {
+        const response = await axios.post('http://localhost:5050/water/add', waterInfo);
+        console.log('Water entry added:', response.data);
+        if (response.status === 201) {
+          alert('Water entry saved successfully!');
+          setDate('');
+          setTime('');
+          setOunces('');
+        }
+      } catch (error) {
+        console.error('Failed to save water entry:', error);
+        alert('Failed to save water entry. Please try again.');
+      }
     } else {
       alert('Please fill out all fields.');
     }

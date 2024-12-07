@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import axios from 'axios';
 
 function InputFood() {
 
@@ -8,12 +9,27 @@ function InputFood() {
   const [calories, setCalories] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = (e) => {
-    const foodInfo = JSON.parse(sessionStorage.getItem('foodInfo')) || [];
+  const username = localStorage.getItem('username');
 
-    if (date && time && calories && description) {
-      foodInfo.push({ date, time, calories, description });
-      sessionStorage.setItem('foodInfo', JSON.stringify(foodInfo));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (date && time && calories && description && username) {
+      const foodInfo = { date, time, calories, description, username };
+
+      try {
+        const response = await axios.post('http://localhost:5050/food/add', foodInfo);
+        if (response.status === 201) {
+          alert('Food entry saved successfully!');
+          setDate('');
+          setTime('');
+          setCalories('');
+          setDescription('');
+        }
+      } catch (error) {
+        console.error('Failed to save food entry:', error);
+        alert('Failed to save food entry. Please try again.');
+      }
     } else {
       alert('Please fill out all fields.');
     }
